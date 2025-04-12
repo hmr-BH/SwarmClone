@@ -177,3 +177,5 @@ datasets/
 Dockerfile
 *.x86_64
 *_Data
+
+launcher/.vscode/
