@@ -212,3 +212,19 @@ config.yml
 /docs/node_modules
 config.yml
 logs/
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.tsbuildinfo
+
+# Build output
+dist/
+build/
+
+# Config files with secrets
+config.toml
+.env.local
+.env.*.local
