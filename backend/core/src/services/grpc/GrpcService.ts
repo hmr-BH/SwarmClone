@@ -58,7 +58,7 @@ export class GrpcService extends BaseService<GrpcConfig> {
   /**
    * 加载protobuf定义
    */
-  loadProto(protoPath: string): grpc.PackageDefinition {
+  loadProto(protoPath: string): PackageDefinition {
     const fullPath = require('path').resolve(protoPath);
     const packageDefinition = protoLoader.loadSync(fullPath, {
       keepCase: true,
