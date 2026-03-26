@@ -1,0 +1,28 @@
+parameters:
+  wave:
+    - address: "/avatar/parameters/GestureLeft"
+      value: 1
+      type: int
+    - address: "/avatar/parameters/GestureLeftWeight"
+      value: 0.8
+      type: float
+      transition_time: 0.3
+      
+  bow:
+    - address: "/avatar/parameters/GestureRight"
+      value: 2
+      type: int
+    - address: "/avatar/parameters/GestureRightWeight"
+      value: 1.0
+      type: float
+      transition_time: 0.5
+      
+  happy:
+    - address: "/avatar/parameters/VRCFaceExpression"
+      value: "happy"
+      type: string
+      
+  sad:
+    - address: "/avatar/parameters/VRCFaceExpression"
+      value: "sad"
+      type: string

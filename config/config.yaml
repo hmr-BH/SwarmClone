@@ -1,0 +1,32 @@
+system:
+  mode: development
+  log_level: INFO
+
+services:
+  asr:
+    enabled: true
+    engine: whisper
+    model: base
+    language: zh
+  vision:
+    enabled: false
+    device: 0
+    fps: 30
+  vrchat:
+    enabled: true
+    osc_address: 127.0.0.1
+    osc_port: 9000
+    auto_reconnect: true
+    reconnect_interval: 5.0
+  keyboard:
+    enabled: true
+
+messaging:
+  redis:
+    host: localhost
+    port: 6379
+    db: 0
+
+web:
+  host: 0.0.0.0
+  port: 8080

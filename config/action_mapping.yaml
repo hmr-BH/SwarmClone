@@ -1,0 +1,40 @@
+mappings:
+  - trigger: "你好"
+    action_type: gesture
+    action_name: wave
+    parameters:
+      intensity: 0.8
+    cooldown: 2.0
+    enabled: true
+    
+  - trigger: "谢谢"
+    action_type: gesture
+    action_name: bow
+    parameters:
+      duration: 1.5
+    cooldown: 2.0
+    enabled: true
+    
+  - trigger: "开心"
+    action_type: expression
+    action_name: happy
+    parameters:
+      intensity: 1.0
+    cooldown: 1.0
+    enabled: true
+    
+  - trigger: "难过"
+    action_type: expression
+    action_name: sad
+    parameters:
+      intensity: 0.8
+    cooldown: 1.0
+    enabled: true
+    
+  - trigger: "key:ctrl+shift+h"
+    action_type: expression
+    action_name: happy
+    parameters:
+      intensity: 1.0
+    cooldown: 0.5
+    enabled: true

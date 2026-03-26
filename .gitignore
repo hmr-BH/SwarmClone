@@ -56,6 +56,11 @@ htmlcov/
 *.dll
 *.so
 *.dylib
-/.trae
-/.trae
-/.spec
+
+# Local config
+config/local.yaml
+config/local.yml
+
+# Data
+data/*.db
+data/*.sqlite

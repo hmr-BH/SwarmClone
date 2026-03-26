@@ -1,9 +1,9 @@
 [project]
 name = "swarmclone"
 version = "0.1.0"
-description = "Multi-language virtual character control system"
+description = "多语言混合开发的虚拟形象控制系统"
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.9"
 dependencies = [
     "websockets>=12.0",
     "pydantic>=2.0.0",
@@ -11,7 +11,11 @@ dependencies = [
     "tomli>=2.0.0;python_version<'3.11'",
     "tomli-w>=1.0.0",
     "loguru>=0.7.0",
-    "asyncio-mqtt>=0.16.0",
+    "pyyaml>=6.0",
+    "redis>=5.0.0",
+    "grpcio>=1.60.0",
+    "grpcio-tools>=1.60.0",
+    "cryptography>=41.0.0",
 ]
 
 [project.optional-dependencies]
@@ -24,13 +28,13 @@ dev = [
 
 [tool.ruff]
 line-length = 100
-target-version = "py312"
+target-version = "py39"
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "N", "UP", "B", "C4"]
 
 [tool.mypy]
-python_version = "3.12"
+python_version = "3.9"
 strict = true
 ignore_missing_imports = true
 
