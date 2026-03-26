@@ -2,10 +2,10 @@
 
 ## Phase 1: 基础架构搭建
 
-- [ ] Task 1: 创建项目配置文件
-  - [ ] SubTask 1.1: 创建根目录的 pyproject.toml 更新，添加核心依赖
-  - [ ] SubTask 1.2: 创建 .editorconfig 统一编辑器配置
-  - [ ] SubTask 1.3: 创建 docker-compose.yml 用于服务编排
+- [x] Task 1: 创建项目配置文件
+  - [x] SubTask 1.1: 创建根目录的 pyproject.toml 更新，添加核心依赖
+  - [x] SubTask 1.2: 创建 .editorconfig 统一编辑器配置
+  - [x] SubTask 1.3: 创建 docker-compose.yml 用于服务编排
 
 - [ ] Task 2: CLI 模块初始化 (Rust)
   - [ ] SubTask 2.1: 初始化 Rust 项目 (cargo init)

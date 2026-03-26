@@ -56,3 +56,4 @@ htmlcov/
 *.dll
 *.so
 *.dylib
+/.trae
