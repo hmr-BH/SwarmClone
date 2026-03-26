@@ -22,6 +22,11 @@ SERVICES = {
         "cwd": "services/asr",
         "enabled": True,
     },
+    "vrchat": {
+        "cmd": [sys.executable, "-m", "src.main"],
+        "cwd": "services/vrchat",
+        "enabled": True,
+    },
     "keyboard": {
         "cmd": [sys.executable, "-m", "src.main"],
         "cwd": "services/keyboard",

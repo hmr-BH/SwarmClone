@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package swarmclone.config;
+
+option go_package = "github.com/hmr-BH/SwarmClone/api/config";
+
+service ConfigService {
+    rpc Get(GetRequest) returns (ConfigValue);
+    rpc Set(SetRequest) returns (SetResponse);
+    rpc Validate(ValidateRequest) returns (ValidateResponse);
+    rpc Export(ExportRequest) returns (ConfigData);
+    rpc Import(ImportRequest) returns (ImportResponse);
+}
+
+message GetRequest {
+    string key = 1;
+}
+
+message ConfigValue {
+    bool success = 1;
+    string key = 2;
+    string value = 3;
+    string value_type = 4;
+}
+
+message SetRequest {
+    string key = 1;
+    string value = 2;
+    string value_type = 3;
+}
+
+message SetResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+message ValidateRequest {
+    string config_json = 1;
+}
+
+message ValidateResponse {
+    bool valid = 1;
+    repeated string errors = 2;
+    repeated string warnings = 3;
+}
+
+message ExportRequest {
+    repeated string sections = 1;
+}
+
+message ConfigData {
+    string format = 1;
+    string content = 2;
+}
+
+message ImportRequest {
+    string format = 1;
+    string content = 2;
+    bool overwrite = 3;
+}
+
+message ImportResponse {
+    bool success = 1;
+    string message = 2;
+    int32 imported_count = 3;
+}

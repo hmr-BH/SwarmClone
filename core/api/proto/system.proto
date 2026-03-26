@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+package swarmclone.system;
+
+option go_package = "github.com/hmr-BH/SwarmClone/api/system";
+
+service SystemService {
+    rpc Start(StartRequest) returns (StartResponse);
+    rpc Stop(StopRequest) returns (StopResponse);
+    rpc Restart(RestartRequest) returns (RestartResponse);
+    rpc GetStatus(StatusRequest) returns (SystemStatus);
+    rpc GetServiceStatus(ServiceStatusRequest) returns (ServiceStatus);
+}
+
+message StartRequest {
+    repeated string services = 1;
+    bool force = 2;
+}
+
+message StartResponse {
+    bool success = 1;
+    string message = 2;
+    repeated string started_services = 3;
+}
+
+message StopRequest {
+    repeated string services = 1;
+    bool force = 2;
+}
+
+message StopResponse {
+    bool success = 1;
+    string message = 2;
+    repeated string stopped_services = 3;
+}
+
+message RestartRequest {
+    repeated string services = 1;
+}
+
+message RestartResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+message StatusRequest {}
+
+message ServiceStatusRequest {
+    string service_name = 1;
+}
+
+message SystemStatus {
+    string version = 1;
+    int64 uptime = 2;
+    string mode = 3;
+    map<string, ServiceInfo> services = 4;
+}
+
+message ServiceInfo {
+    string name = 1;
+    string status = 2;
+    int32 pid = 3;
+    int64 uptime = 4;
+    string error_message = 5;
+}
+
+message ServiceStatus {
+    string name = 1;
+    string status = 2;
+    int32 pid = 3;
+    int64 uptime = 4;
+    string error_message = 5;
+}

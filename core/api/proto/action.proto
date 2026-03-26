@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+package swarmclone.action;
+
+option go_package = "github.com/hmr-BH/SwarmClone/api/action";
+
+service ActionService {
+    rpc Trigger(TriggerRequest) returns (TriggerResponse);
+    rpc GetMapping(GetMappingRequest) returns (ActionMapping);
+    rpc ListMappings(ListMappingsRequest) returns (ListMappingsResponse);
+    rpc AddMapping(AddMappingRequest) returns (AddMappingResponse);
+    rpc RemoveMapping(RemoveMappingRequest) returns (RemoveMappingResponse);
+}
+
+message TriggerRequest {
+    string trigger = 1;
+    string source = 2;
+    float confidence = 3;
+}
+
+message TriggerResponse {
+    bool success = 1;
+    string action_name = 2;
+    string action_type = 3;
+    map<string, string> parameters = 4;
+}
+
+message GetMappingRequest {
+    string trigger = 1;
+}
+
+message ActionMapping {
+    string trigger = 1;
+    string action_type = 2;
+    string action_name = 3;
+    map<string, string> parameters = 4;
+    int32 priority = 5;
+    float cooldown = 6;
+    bool enabled = 7;
+}
+
+message ListMappingsRequest {
+    string action_type = 1;
+    bool enabled_only = 2;
+}
+
+message ListMappingsResponse {
+    repeated ActionMapping mappings = 1;
+    int32 total_count = 2;
+}
+
+message AddMappingRequest {
+    ActionMapping mapping = 1;
+}
+
+message AddMappingResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+message RemoveMappingRequest {
+    string trigger = 1;
+}
+
+message RemoveMappingResponse {
+    bool success = 1;
+    string message = 2;
+}
