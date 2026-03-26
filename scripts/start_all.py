@@ -5,34 +5,52 @@ SwarmClone 启动脚本
 用于启动所有服务的便捷脚本。
 """
 
-import asyncio
+import os
 import subprocess
 import sys
 from pathlib import Path
 
 
+PROJECT_ROOT = Path(__file__).parent.parent.absolute()
+
+
 SERVICES = {
     "core": {
         "cmd": [sys.executable, "-m", "core.main"],
-        "cwd": "core",
+        "cwd": PROJECT_ROOT,
         "enabled": True,
     },
     "asr": {
         "cmd": [sys.executable, "-m", "src.main"],
-        "cwd": "services/asr",
+        "cwd": PROJECT_ROOT / "services" / "asr",
         "enabled": True,
     },
     "vrchat": {
         "cmd": [sys.executable, "-m", "src.main"],
-        "cwd": "services/vrchat",
+        "cwd": PROJECT_ROOT / "services" / "vrchat",
         "enabled": True,
     },
     "keyboard": {
         "cmd": [sys.executable, "-m", "src.main"],
-        "cwd": "services/keyboard",
+        "cwd": PROJECT_ROOT / "services" / "keyboard",
         "enabled": True,
     },
+    "vision": {
+        "cmd": [sys.executable, "-m", "src.main"],
+        "cwd": PROJECT_ROOT / "services" / "vision",
+        "enabled": False,
+    },
 }
+
+
+def get_env():
+    """获取环境变量"""
+    env = os.environ.copy()
+    pythonpath = str(PROJECT_ROOT)
+    if "PYTHONPATH" in env:
+        pythonpath = f"{pythonpath}{os.pathsep}{env['PYTHONPATH']}"
+    env["PYTHONPATH"] = pythonpath
+    return env
 
 
 def start_redis():
@@ -41,23 +59,26 @@ def start_redis():
     try:
         subprocess.run(
             ["docker-compose", "up", "-d", "redis"],
+            cwd=PROJECT_ROOT,
             check=True,
         )
         print("Redis服务已启动")
     except FileNotFoundError:
         print("Docker未安装，请手动启动Redis")
+        print("  可以运行: redis-server")
     except subprocess.CalledProcessError as e:
         print(f"启动Redis失败: {e}")
 
 
 def start_service(name: str, config: dict) -> subprocess.Popen:
     """启动单个服务"""
-    cwd = Path(config["cwd"]) if config.get("cwd") else None
+    cwd = config.get("cwd", PROJECT_ROOT)
     print(f"启动服务: {name}")
 
     process = subprocess.Popen(
         config["cmd"],
         cwd=cwd,
+        env=get_env(),
     )
     return process
 
@@ -67,8 +88,11 @@ def main():
     print("=" * 50)
     print("SwarmClone 启动器")
     print("=" * 50)
+    print(f"项目根目录: {PROJECT_ROOT}")
+    print()
 
     start_redis()
+    print()
 
     processes = []
 
@@ -80,8 +104,12 @@ def main():
             except Exception as e:
                 print(f"启动服务 {name} 失败: {e}")
 
-    print("\n所有服务已启动")
-    print("按 Ctrl+C 停止所有服务\n")
+    print()
+    print("=" * 50)
+    print("所有服务已启动")
+    print("按 Ctrl+C 停止所有服务")
+    print("=" * 50)
+    print()
 
     try:
         for name, proc in processes:

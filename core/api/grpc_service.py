@@ -9,9 +9,9 @@ from typing import Optional
 import grpc
 from loguru import logger
 
-from core.api.proto import system_pb2, system_pb2_grpc
-from core.api.proto import config_pb2, config_pb2_grpc
-from core.api.proto import action_pb2, action_pb2_grpc
+from core.api import system_pb2, system_pb2_grpc
+from core.api import config_pb2, config_pb2_grpc
+from core.api import action_pb2, action_pb2_grpc
 from core.engine.action_mapper import ActionMapper
 from core.engine.state_manager import StateManager
 from core.utils.config_loader import ConfigLoader
