@@ -1,0 +1,5 @@
+hotkeys:
+  "ctrl+shift+h": "happy"
+  "ctrl+shift+s": "sad"
+  "ctrl+shift+w": "wave"
+  "ctrl+shift+b": "bow"
