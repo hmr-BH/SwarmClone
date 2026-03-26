@@ -58,3 +58,4 @@ htmlcov/
 *.dylib
 /.trae
 /.trae
+/.spec
