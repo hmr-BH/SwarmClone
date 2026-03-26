@@ -5,9 +5,17 @@ system:
 services:
   asr:
     enabled: true
-    engine: whisper
-    model: base
+    engine: aliyun
+    model: fun-asr
     language: zh
+    api_key: ${ALIYUN_API_KEY}
+  tts:
+    enabled: true
+    engine: aliyun
+    model: qwen3-tts-flash-realtime
+    voice: Cherry
+    sample_rate: 24000
+    api_key: ${ALIYUN_API_KEY}
   vision:
     enabled: false
     device: 0

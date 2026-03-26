@@ -64,3 +64,8 @@ config/local.yml
 # Data
 data/*.db
 data/*.sqlite
+
+# Test output
+test_output*.wav
+test_output*.pcm
+*.test.wav
