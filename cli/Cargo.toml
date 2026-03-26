@@ -1,0 +1,28 @@
+[package]
+name = "swarmclone-cli"
+version = "0.1.0"
+edition = "2021"
+authors = ["SwarmClone Team"]
+description = "SwarmClone CLI工具 - 虚拟形象控制系统命令行接口"
+license = "MIT"
+
+[dependencies]
+clap = { version = "4.5", features = ["derive", "env"] }
+tokio = { version = "1.36", features = ["full"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+serde_yaml = "0.9"
+toml = "0.8"
+anyhow = "1.0"
+thiserror = "1.0"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+dialoguer = "0.11"
+indicatif = "0.17"
+dirs = "5.0"
+which = "6.0"
+
+[profile.release]
+opt-level = 3
+lto = true
+strip = true
