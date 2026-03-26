@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "swarmclone-vision"
+version = "0.1.0"
+description = "SwarmClone 视觉服务 - 面部追踪模块"
+requires-python = ">=3.9"
+dependencies = [
+    "redis>=5.0.0",
+    "pydantic>=2.5.0",
+    "loguru>=0.7.0",
+    "pyyaml>=6.0",
+    "numpy>=1.24.0",
+]
+
+[project.optional-dependencies]
+opencv = [
+    "opencv-python>=4.8.0",
+]
+mediapipe = [
+    "mediapipe>=0.10.0",
+]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
