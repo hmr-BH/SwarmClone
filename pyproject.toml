@@ -1,0 +1,39 @@
+[project]
+name = "swarmclone"
+version = "0.1.0"
+description = "Multi-language virtual character control system"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "websockets>=12.0",
+    "pydantic>=2.0.0",
+    "pydantic-settings>=2.0.0",
+    "tomli>=2.0.0;python_version<'3.11'",
+    "tomli-w>=1.0.0",
+    "loguru>=0.7.0",
+    "asyncio-mqtt>=0.16.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "ruff>=0.3.0",
+    "mypy>=1.8.0",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "C4"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

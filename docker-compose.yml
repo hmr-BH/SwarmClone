@@ -1,0 +1,53 @@
+services:
+  core:
+    build:
+      context: .
+      dockerfile: Dockerfile.core
+    ports:
+      - "8765:8765"
+    volumes:
+      - ./config:/app/config
+      - ./logs:/app/logs
+    environment:
+      - LOG_LEVEL=INFO
+    restart: unless-stopped
+
+  panel:
+    build:
+      context: ./panel
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - core
+    environment:
+      - VITE_WS_URL=ws://core:8765
+    restart: unless-stopped
+
+  asr-client:
+    build:
+      context: .
+      dockerfile: Dockerfile.asr
+    depends_on:
+      - core
+    environment:
+      - CORE_WS_URL=ws://core:8765
+    restart: unless-stopped
+    profiles:
+      - asr
+
+  vision-capture:
+    build:
+      context: .
+      dockerfile: Dockerfile.vision
+    depends_on:
+      - core
+    environment:
+      - CORE_WS_URL=ws://core:8765
+    restart: unless-stopped
+    profiles:
+      - vision
+
+networks:
+  default:
+    name: swarmclone-network
